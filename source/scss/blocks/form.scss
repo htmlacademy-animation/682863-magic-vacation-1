@@ -2,6 +2,13 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+}
+
+.form__field-wrapper {
+  display: flex;
+  margin-right: 3rem;
+  width: calc(100% - 21rem);
 }
 
 .form__label {
@@ -31,10 +38,10 @@
 
 .form__field {
   flex: none;
-  margin-right: 3rem;
-  padding: 0 5.6rem;
+  padding: 0;
+  margin-left: auto;
   height: 6rem;
-  width: calc(100% - 21rem);
+  width: 0;
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -144,5 +151,17 @@
     @media (max-width: $mobile) and (orientation: landscape) {
       width: calc(100% - 5rem);
     }
+  }
+}
+
+
+.screen.active {
+  .form__field-wrapper .form__field {
+    width: 100%;
+    padding: 0 5.6rem;
+
+    transition-property: width, padding;
+    transition-duration: 600ms;
+    transition-timing-function: ease-out;
   }
 }

@@ -5,6 +5,23 @@
     .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      & .social-block__link {
+        opacity: 1;
+        transition: opacity 400ms linear;
+
+        &--fb {
+          transition-delay: 100ms;
+        }
+
+        &--insta {
+          transition-delay: 200ms;
+        }
+
+        &--vk {
+          transition-delay: 300ms;
+        }
+      }
     }
   }
 }
@@ -35,6 +52,10 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+
+    transition-property: width, height;
+    transition-duration: 150ms;
+    transition-timing-function: linear;
   }
 
   svg {
@@ -168,6 +189,8 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+
 
   @media (min-width: $stop-scaling) {
     width: 40px;
