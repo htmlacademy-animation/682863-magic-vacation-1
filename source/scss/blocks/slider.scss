@@ -91,11 +91,15 @@
 }
 
 .slider__item-text {
+  position: relative;
+  left: 50px;
   margin-top: 3.6rem;
   margin-bottom: 0;
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+
+  opacity: 0;
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -273,6 +277,26 @@
       width: 0.4rem;
       height: 0.4rem;
       background-color: $c-light;
+    }
+  }
+}
+
+.swiper-slide {
+  &-active, &-next {
+    .slider__item-text {
+      left: 0;
+      opacity: 1;
+
+      transition-property: opacity, left;
+      transition-duration: 500ms, 300ms;
+      transition-timing-function: linear, ease-out;
+      transition-delay: 1000ms;
+    }
+  }
+
+  &-next {
+    .slider__item-text {
+      transition-delay: 1300ms;
     }
   }
 }
