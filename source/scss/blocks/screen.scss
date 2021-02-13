@@ -40,7 +40,7 @@
 
 .screen__footer {
   position: absolute;
-  bottom: 0;
+  bottom: -2.8rem;
   left: 0;
   right: 0;
   color: $c-dark;
@@ -353,4 +353,12 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+.body.active {
+  .screen__footer {
+    @include start;
+    bottom: 0;
+    transition-property: bottom;
+  }
 }

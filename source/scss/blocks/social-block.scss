@@ -54,8 +54,8 @@
     z-index: -1;
 
     transition-property: width, height;
-    transition-duration: 150ms;
-    transition-timing-function: linear;
+    transition-timing-function: cubic-bezier(0.96,-0.06,0.45,1.49);
+    transition-duration: 500ms;
   }
 
   svg {
@@ -72,6 +72,8 @@
     &::before {
       width: 112.5%;
       height: 112.5%;
+      transition-duration: 150ms;
+      transition-timing-function: linear;
     }
   }
 
@@ -262,6 +264,15 @@
         width: 10px;
         height: 10px;
       }
+    }
+  }
+}
+
+.body:not(.active) {
+  .social-block__toggler {
+    &::before {
+      width: 0;
+      height: 0;
     }
   }
 }
