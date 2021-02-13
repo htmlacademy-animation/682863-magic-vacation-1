@@ -58,3 +58,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin start {
+  transition-duration: 1000ms;
+  transition-timing-function: cubic-bezier(0,0.8,0.09,0.8);
+}
