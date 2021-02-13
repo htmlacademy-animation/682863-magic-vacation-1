@@ -2647,6 +2647,7 @@ img {
   z-index: 1; }
 
 .screen__footer {
+  opacity: 0;
   position: absolute;
   bottom: -2.8rem;
   left: 0;
@@ -2920,8 +2921,9 @@ img {
 .body.active .screen__footer {
   transition-duration: 1000ms;
   transition-timing-function: cubic-bezier(0, 0.8, 0.09, 0.8);
+  opacity: 1;
   bottom: 0;
-  transition-property: bottom; }
+  transition-property: bottom, opacity; }
 
 .slider {
   position: relative;
