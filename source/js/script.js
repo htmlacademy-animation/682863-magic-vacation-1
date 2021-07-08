@@ -1,6 +1,6 @@
 // modules
 import mobileHeight from './modules/mobile-height-adjust.js';
-import onLoad from './modules/dom-load.js'
+import onLoad from './modules/dom-load.js';
 import slider from './modules/slider.js';
 import menu from './modules/menu.js';
 import footer from './modules/footer.js';

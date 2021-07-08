@@ -1,9 +1,13 @@
 import throttle from 'lodash/throttle';
 
+const showBackgroundTime = 400;
+const delayDisplays = [`prizes`];
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
 
+    this.background = document.querySelector(`.anim-background`);
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
@@ -12,11 +16,31 @@ export default class FullPageScroll {
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
 
-  _setActiveScreen() {
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+  get currentScreen() {
+    return this.screenElements[this.activeScreen].id;
+  }
+
+  get changeDisplayTimer() {
+    return delayDisplays.includes(this.currentScreen) ? showBackgroundTime : 0;
+  }
+
+  _showBackground() {
+    const method = delayDisplays.includes(this.currentScreen) ? `add` : `remove`;
+    this.background.classList[method](`show-background`);
     setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+      this.background.classList.remove(`show-background`);
+    }, this.changeDisplayTimer);
+  }
+
+  _setActiveScreen() {
+    this._showBackground();
+    setTimeout(() => {
+      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+      setTimeout(() => {
+        this.screenElements[this.activeScreen].classList.add(`active`);
+      }, 100);
+    }, this.changeDisplayTimer);
+
   }
 
   init() {
@@ -48,8 +72,11 @@ export default class FullPageScroll {
 
   changeVisibilityDisplay() {
     this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
+      setTimeout(() => {
+        screen.classList.add(`screen--hidden`);
+        screen.classList.remove(`active`);
+      }, this.changeDisplayTimer);
+
     });
     this._setActiveScreen();
   }
@@ -67,8 +94,8 @@ export default class FullPageScroll {
       detail: {
         'screenId': this.activeScreen,
         'screenName': this.screenElements[this.activeScreen].id,
-        'screenElement': this.screenElements[this.activeScreen]
-      }
+        'screenElement': this.screenElements[this.activeScreen],
+      },
     });
 
     document.body.dispatchEvent(event);
